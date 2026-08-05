@@ -1,0 +1,61 @@
+.category_input-body{
+    display: flex;
+    width: 223px;
+    padding: 10px 12px;
+    margin-top: 10px;
+    align-items: center;
+    gap: 12px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.232);
+    border-left: #ffffff00;
+    border-right: #ffffff00;
+    background-color: #ffffff09;
+}
+
+.color-circle{
+    width: 8px;
+    height: 8px;
+    flex-shrink: 0;
+    border-radius: 33554400px;
+    background: #A78BFA;
+}
+
+.category_name-field{
+    color: white;
+    border: none;
+    caret-color: white;
+    background-color: transparent;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px; /* 142.857% */
+}
+
+.category_name-field::placeholder{
+    color: #9298c6a3;
+}
+
+.category_name-field:focus{
+    outline: none;
+}
+
+.category_name-field:focus::placeholder{
+    color: transparent;
+}
+
+.tasks_count-circle{
+    display: flex;
+    padding: 2px 6px;
+    flex-direction: column;
+    align-items: flex-start;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.tasks_count-circle p{
+    color: #7B80A8;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px; /* 133.333% */
+}

@@ -1,0 +1,16 @@
+<div class="tasks-list-container">
+    @for (task of taskWithCategories$ | async; track task.id) {
+        <app-task-item 
+            [isDone]="task.isCompleted" 
+            [isMenuOpened]="openMenuId === task.id" 
+            (onDoneClick)="markTaskAsDone(task.id)" 
+            (onDeleteButtonClick)="deleteTask(task.id)" 
+            (onMenuClick)="toggleMenu(task.id, $event)" 
+            [categoryColor]="task.categoryColor" 
+            [priority]="task.priorityLevel" 
+            [title]="task.title" 
+            [deadline]="task.deadline" 
+            [categoryName]="task.categoryName">
+        </app-task-item>
+    }
+</div>

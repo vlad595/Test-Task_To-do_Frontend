@@ -1,0 +1,41 @@
+<div class="login-container">
+    <main class="login-content">
+        <div class="login-card">
+            <header class="login-header">
+                <div class="logo">
+                    <img src="/stable-disperson-icon_paths-white.svg" class="logo-icon">
+                    <p>To-Do</p>
+                </div>
+            </header>
+
+            <h1 class="login-title">Welcome back</h1>
+            <p class="login-subtitle">Sign in to manage your tasks and keep your day on track.</p>
+
+            <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" id="email" formControlName="email" name="email" autocomplete="email" placeholder="you@example.com" required />
+                </div>
+
+                <div class="form-group">
+                    <div class="label-row">
+                        <label for="password">Password</label>
+                        <a href="#" class="forgot-password">Forgot password?</a>
+                    </div>
+                    <input type="password" id="password" formControlName="password" name="password" autocomplete="current-password" placeholder="Enter your password" required />
+                </div>
+
+                <button type="submit" [disabled]="loginForm.invalid" class="btn-submit">Sign in</button>
+            </form>
+
+            <p class="login-footer">
+                <span class="footer-text">Don't have an account?</span>
+                <a href="#" routerLink="/reg" class="footer-link">Create one</a>
+            </p>
+        </div>
+    </main>
+    <div class="design-context">
+        <div class="gradient-first-block"></div>
+        <div class="gradient-second-block"></div>
+    </div>
+</div>

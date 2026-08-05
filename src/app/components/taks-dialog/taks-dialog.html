@@ -1,0 +1,41 @@
+<div class="task-modal">
+  
+  <header class="task-header">
+    <h2 class="task-title">New task</h2>
+    <mat-icon mat-dialog-close>close</mat-icon>
+  </header>
+
+  <form class="task-form" (ngSubmit)="makeNewTask()">
+    <input type="text" class="input-field input-large" placeholder="Task name" [(ngModel)]="taskName" name="taskName">
+
+    <div class="form-group">
+      <label>List</label>
+      <select class="input-field input-small" [(ngModel)]="categoryId" name="categoryId">
+        <option value="null"></option>
+        @for (category of categories; track category.id) {
+            <option [value]="category.id">{{category.name}}</option>
+        }
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Due date</label>
+      <input type="date" class="input-field input-small" name="deadline" [(ngModel)]="deadline">
+    </div>
+
+    <div class="form-group">
+      <label>Priority</label>
+      <div class="priority-options">
+        <button type="button" class="btn-priority-low" [class.active]="activePriority() === 0" (click)="changePriority(0)">Low</button>
+        <button type="button" class="btn-priority-medium" [class.active]="activePriority() === 1" (click)="changePriority(1)">Medium</button>
+        <button type="button" class="btn-priority-high" [class.active]="activePriority() === 2" (click)="changePriority(2)">High</button>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="button" class="btn btn-cancel" mat-dialog-close>Cancel</button>
+      <button type="submit" class="btn btn-submit" [disabled]="!taskName">Add task</button>
+    </div>
+  </form>
+  
+</div>

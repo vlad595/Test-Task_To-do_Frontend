@@ -1,0 +1,35 @@
+:host{
+    display: block;
+    width: min(384px, 100%);
+    align-items: center;
+}
+
+.search-field-body{
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    max-width: 384px;
+    padding: 8px 12px;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+input{
+    flex: 1;
+    min-width: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: #e8eaf6;
+}
+
+mat-icon{
+    font-family: 'Material Icons Outlined' !important;
+    color: #7B80A8;
+    font-size: 24px;
+}

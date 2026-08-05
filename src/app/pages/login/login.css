@@ -1,0 +1,239 @@
+:host {
+  display: block;
+}
+
+mat-icon{
+    font-family: 'Material Icons Outlined' !important;
+}
+
+.login-container {
+  --text-primary: #f4f5ff;
+  --text-secondary: #a6abc9;
+  --accent-color: #887cff;
+  --bg-input: rgba(255, 255, 255, 0.06);
+  --border-input: rgba(255, 255, 255, 0.12);
+  position: relative;
+  min-height: 100dvh;
+  overflow: hidden;
+  background: #080b18;
+  font-family: Roboto, Arial, sans-serif;
+}
+
+.login-content {
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  display: grid;
+  min-height: 100dvh;
+  place-items: center;
+  padding: 24px;
+}
+
+.login-card {
+  box-sizing: border-box;
+  width: min(100%, 420px);
+  padding: 36px;
+  background: rgba(19, 23, 44, 0.78);
+  backdrop-filter: blur(18px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 20px 55px rgba(0, 0, 0, 0.38);
+  border-radius: 24px;
+  outline: 1px solid rgba(255, 255, 255, 0.10);
+  outline-offset: -1px;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-header {
+  display: flex;
+  align-items: self-start;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+
+.logo{
+  display: flex;
+  align-items: center;
+  gap: 0px;
+  color: white;
+  height: 30px;
+  transform: translateX(-30px) translateY(10px);
+}
+
+.logo p {
+  margin: 0;
+}
+
+.logo-icon{
+  width: 164px;
+  height: 164px;
+}
+
+.login-title {
+  color: var(--text-primary);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 32px;
+  margin: 0 0 4px 0;
+}
+
+.login-subtitle {
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  margin: 0 0 28px 0;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+.form-group input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 46px;
+  padding: 12px 16px;
+  background: var(--bg-input);
+  color: var(--text-primary);
+  border: none;
+  border-radius: 20px;
+  outline: 1px solid var(--border-input);
+  outline-offset: -1px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.form-group input::placeholder {
+  color: #747b9f;
+}
+
+.label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.forgot-password {
+  color: #a9a1ff;
+  font-size: 12px;
+  line-height: 16px;
+  text-decoration: none;
+}
+
+.forgot-password:hover,
+.forgot-password:focus-visible {
+  color: #d4d0ff;
+  text-decoration: underline;
+}
+
+.form-group input:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: -1px;
+}
+
+/* Button */
+.btn-submit {
+  width: 100%;
+  height: 44px;
+  margin-top: 8px;
+  background: linear-gradient(135deg, #7C6FFF 0%, #5B8DEF 100%);
+  box-shadow: 0px 4px 20px rgba(124, 111, 255, 0.40);
+  border-radius: 20px;
+  border: none;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.btn-submit:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+.btn-submit:focus-visible,
+.form-group input:focus-visible,
+.footer-link:focus-visible,
+.forgot-password:focus-visible {
+  outline: 2px solid #b9b2ff;
+  outline-offset: 3px;
+}
+
+.login-footer {
+  width: 100%;
+  text-align: center;
+  margin: 24px 0 0 0;
+  opacity: 0.6;
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.footer-text {
+  color: var(--text-secondary);
+}
+
+.footer-link {
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
+.footer-link:hover {
+  text-decoration: underline;
+}
+
+.design-context{
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+.gradient-first-block{
+    width: 600px;
+    height: 600px;
+    border-radius: 33554400px;
+    background: radial-gradient(70.71% 70.71% at 50% 50%, rgba(124, 111, 255, 0.27) 0%, rgba(124, 111, 255, 0.00) 70%);
+    filter: blur(64px);
+    position: absolute;
+    top: -150px;
+    left: -150px;
+}
+.gradient-second-block{
+    width: 500px;
+    height: 500px;
+    border-radius: 33554400px;
+    background: radial-gradient(70.71% 70.71% at 50% 50%, rgba(79, 195, 247, 0.27) 0%, rgba(79, 195, 247, 0.00) 70%);
+    filter: blur(64px);
+    position: absolute;
+    bottom: -150px;
+    right: -150px;
+}
+
+@media (max-width: 480px) {
+  .login-content {
+    padding: 16px;
+  }
+
+  .login-card {
+    padding: 28px 24px;
+    border-radius: 20px;
+  }
+}

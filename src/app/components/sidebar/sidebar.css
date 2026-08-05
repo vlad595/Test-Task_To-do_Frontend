@@ -1,0 +1,130 @@
+.sidebar{
+    display: flex;
+    width: 240px;
+    height: 100%;
+    min-width: 240px;
+    padding: 16px 8px;
+    flex-direction: column;
+    align-items: flex-start;
+    border-right: 1px solid rgba(255, 255, 255, 0.07);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.account-container{
+    display: flex;
+    width: 223px;
+    height: 60px;
+    padding: 0 12px 24px 12px;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+    color: #E8EAF6;
+}
+
+.account-inf h2{
+    color: #7B80A8;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px; /* 133.333% */
+}
+
+.avatar{
+    display: flex;
+    width: 36px;
+    height: 36px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 33554400px;
+    background: linear-gradient(135deg, #7C6FFF 0%, #4FC3F7 100%);
+    color: #FFF;
+    font-size: 13.68px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 19.543px; /* 142.857% */
+}
+
+.nav-buttons{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    color: #E8EAF6;
+}
+
+button{
+    display: flex;
+    width: 223px;
+    padding: 10px 12px;
+    align-items: center;
+    gap: 12px;
+    color: #7B80A8;
+    align-self: stretch;
+    border: 1px solid rgba(123, 111, 255, 0);
+}
+
+button:hover{
+    color: #E8EAF6;
+    
+}
+
+button:hover mat-icon{
+    color: #E8EAF6;
+}
+
+.filter-button mat-icon {
+    width: 24px;
+    height: 24px;
+    font-size: 24px;
+    display: flex;
+    align-self: center;
+    align-items: center;
+}
+
+.filter-button.active{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    align-self: stretch;
+    border-radius: 20px;
+    border: 1px solid rgba(124, 111, 255, 0.28);
+    background: rgba(124, 111, 255, 0.18);
+    color:#E8EAF6;
+}
+
+.filter-button.active mat-icon{
+    color:white;
+}
+
+.divider {
+    border: none; 
+    border-top: 1px solid rgba(255, 255, 255, 0.1); 
+    margin: 16px 0;
+    width: 100%;
+}
+
+.categories-header{
+    color: #7b80a8d4;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 13.333px;
+    letter-spacing: 1.5px;
+}
+
+.mat-icon {
+    font-family: 'Material Icons Outlined' !important;
+    font-size: 26px;
+    color: #7B80A8;
+}
+
+.logout-button{
+    display: flex;
+    width: 223px;
+    padding: 10px 12px;
+    align-items: center;
+    gap: 10px;
+    border-radius: 20px;
+    margin-top: auto;
+}

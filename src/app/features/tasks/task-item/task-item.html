@@ -1,0 +1,51 @@
+<article class="task-item" [class.completed]="isDone">
+    <button [class.low]="priority == 0" [class.medium]="priority == 1" [class.high]="priority == 2" type="button" class="task-checkbox" aria-label="Mark as done" (click)="doneButtonClick()"></button>
+  
+    <div class="task-content">
+        <h3 class="task-title">{{title}}</h3>
+        
+        <div class="task-meta">
+            @if (categoryName){
+                <span 
+                    [style.backgroundColor]="'color-mix(in srgb, ' + categoryColor + ' 8%, transparent)'" 
+                    [style.border-color]="'color-mix(in srgb, ' + categoryColor + ' 19%, transparent)'" 
+                    [style.color]="categoryColor"
+                    class="task-badge">
+                    <mat-icon [style.background]="categoryColor" class="icon-dot"></mat-icon>
+                    {{categoryName}}
+                </span>
+            }
+        
+            @if (deadline) {
+                <span 
+                    [class.today]="(deadline | dateFormatPipe) === 'Today'"
+                    [class.overdue]="(deadline | dateFormatPipe) === 'Yesterday' || (deadline | dateFormatPipe) === 'Last week' || (deadline | dateFormatPipe) === 'Last month'"
+                    [class.enoughTime]="(deadline | dateFormatPipe) === 'Tomorrow' || (deadline | dateFormatPipe) === 'Next week' || (deadline | dateFormatPipe) === 'Next month'"
+                    class="task-badge-deadline">
+                    <mat-icon class="icon-calendar">alarm</mat-icon>
+                    {{deadline | dateFormatPipe}}
+                </span>
+            }
+        
+        <span [class.low]="priority === 0" [class.medium]="priority === 1" [class.high]="priority === 2" class="priority-dot" title="High Priority"></span>
+        </div>
+    </div>
+    <div class="dropdown-container">
+        <button class="task-options-button" (click)="triggerMenu($event)">
+            <mat-icon>more_horiz</mat-icon>
+        </button>
+
+        @if (isMenuOpened) {
+            <div class="dropdown-menu">
+                <button class="menu-button" (click)="deleteButtonClick()">
+                    <mat-icon>delete</mat-icon>
+                    <p>Delete</p>
+                </button>
+                <button class="menu-button">
+                    <mat-icon>edit</mat-icon>
+                    <p>Edit</p>
+                </button>
+            </div>
+        }
+  </div>
+</article>

@@ -1,0 +1,48 @@
+.task-body{
+    margin: 20px;
+    display: flex;
+    padding: 12px 16px;
+    align-items: center;
+    gap: 12px;
+    align-self: stretch;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.icon-container{
+    display: flex;
+    width: 24px;
+    height: 24px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 33554400px;
+    border: 1px dashed rgba(124, 111, 255, 0.50);
+    background: rgba(124, 111, 255, 0.20);
+}
+
+.task-body:hover p{
+    color: white;
+}
+
+mat-icon{
+    font-family: 'Material Icons Outlined' !important;
+    width: 13px;
+    height: 13px;
+    flex-shrink: 0;
+    color: #7C6FFF;
+    align-self: center;
+    font-size: 13px;
+    line-height: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+p{
+    color: #7B80A8;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 142.857% */
+}

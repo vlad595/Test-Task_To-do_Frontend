@@ -1,0 +1,259 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400&display=swap');
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.task-item {
+  width: 100%;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'DM Sans', sans-serif;
+  box-sizing: border-box;
+  /* Виправлено: додано "s" до 0.3s для background-color */
+  transition: opacity 0.3s ease, background-color 0.3s ease; 
+}
+
+/* Затемнення всього контейнера при виконанні */
+.task-item.completed {
+  /* Виправлено: opacity приймає значення від 0 до 1, без "s" */
+  opacity: 0.5; 
+}
+
+.task-checkbox {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid #F87171;
+  background: transparent;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.task-checkbox.low {
+  border: 1px solid #A78BFA;
+}
+
+.task-checkbox.medium {
+  border: 1px solid #ffa42d;
+}
+
+.task-checkbox.high {
+  border: 1px solid #ff4040;
+}
+
+.task-checkbox:hover {
+  background: rgba(248, 113, 113, 0.1);
+}
+
+/* --- ЗАФАРБОВУВАННЯ ЧЕКБОКСА (відповідно до кольору бордера) --- */
+.task-item.completed .task-checkbox {
+  background-color: #F87171; /* Дефолтний колір */
+}
+
+.task-item.completed .task-checkbox.low {
+  background-color: #A78BFA;
+}
+
+.task-item.completed .task-checkbox.medium {
+  background-color: #ffa42d;
+}
+
+.task-item.completed .task-checkbox.high {
+  background-color: #ff4040;
+}
+
+.task-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* --- АНІМАЦІЯ ЗАКРЕСЛЕННЯ ТЕКСТУ --- */
+.task-title {
+  color: #E8EAF6;
+  font-size: 14px;
+  line-height: 1.4;
+  margin: 0;
+  position: relative;
+  display: inline-block;
+  width: fit-content;
+  transition: color 0.3s ease;
+}
+
+/* Лінія закреслення (початково ширина 0%) */
+.task-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 0%;
+  height: 1.5px;
+  background-color: currentColor;
+  transition: width 0.3s ease;
+}
+
+/* При виконанні текст стає трохи тьмянішим */
+.task-item.completed .task-title {
+  color: rgba(232, 234, 246, 0.5); 
+}
+
+/* При виконанні лінія розтягується на всю ширину */
+.task-item.completed .task-title::after {
+  width: 100%;
+}
+
+.task-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.task-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 6px;
+  background: rgba(167, 139, 250, 0.08);
+  border-radius: 14px;
+  border: 1px solid rgba(167, 139, 250, 0.19);
+  color: #A78BFA;
+  font-size: 12px;
+}
+
+.task-badge-deadline {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 6px;
+  background: rgba(167, 139, 250, 0.08);
+  border-radius: 14px;
+  border: 1px solid rgba(167, 139, 250, 0.19);
+  color: #A78BFA;
+  font-size: 12px;
+}
+
+.task-badge-deadline.today {
+  background: rgba(250, 243, 139, 0.08);
+  border: 1px solid rgba(250, 233, 139, 0.19);
+  color: #faf68b;
+}
+
+.task-badge-deadline.overdue {
+  background: rgba(250, 148, 139, 0.08);
+  border: 1px solid rgba(250, 157, 139, 0.19);
+  color: #fa8b8b;
+}
+
+.task-badge-deadline.enoughTime {
+  background: rgba(139, 237, 250, 0.08);
+  border: 1px solid rgba(139, 218, 250, 0.19);
+  color: #8be9fa;
+}
+
+.icon-dot {
+  width: 6px;
+  height: 6px;
+  background: #A78BFA;
+  border-radius: 50%;
+}
+
+mat-icon {
+  font-family: 'Material Icons Outlined' !important;
+}
+
+.icon-calendar {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  font-size: 12px;
+}
+
+.priority-dot {
+  width: 6px;
+  height: 6px;
+  background: #F87171;
+  box-shadow: 0px 0px 4px #F87171;
+  border-radius: 50%;
+}
+
+.priority-dot.low {
+  background: #A78BFA;
+}
+
+.priority-dot.medium {
+  background: #ffa42d;
+}
+
+.priority-dot.high {
+  background: #ff4040;
+}
+
+.task-options-button {
+  color: transparent;
+}
+
+.task-item:hover .task-options-button {
+  color: white;
+}
+
+.task-options-button:hover {
+  color: white;
+  background-color: rgba(255, 255, 255, 0.207);
+  border-radius: 30px;
+}
+
+.task-options-button mat-icon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-container {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%; 
+  right: 0;  
+  margin-top: 4px;
+  min-width: 140px;
+  z-index: 100; 
+  padding: 20px 0px;
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.07), 0px 4px 24px rgba(0, 0, 0, 0.35);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  display: flex;
+  flex-direction: column;
+}
+
+.menu-button {
+  display: flex;
+  flex-direction: row;
+  padding: 8px;
+  align-items: center;
+}
+
+.menu-button:hover {
+  background-color: rgba(255, 255, 255, 0.149);
+}
+
+.menu-button mat-icon {
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+}
