@@ -15,16 +15,26 @@ export class Tasks {
     private tasksSubject = new BehaviorSubject<TaskResponseModel[]>([]);
     private filterSubject = new BehaviorSubject<string>('NOTDONE');
     private categoryFilterSubject = new BehaviorSubject<number>(-1);
+    private searchSubject = new BehaviorSubject<string>('');
 
     tasks$ = this.tasksSubject.asObservable();
 
     filteredAndSortedTasks$: Observable<TaskResponseModel[]> = combineLatest([
         this.tasksSubject,
         this.filterSubject,
-        this.categoryFilterSubject
+        this.categoryFilterSubject,
+        this.searchSubject
     ]).pipe(
-        map(([tasks, filter, categoryFilter]) => {
+        map(([tasks, filter, categoryFilter, search]) => {
             let result = [...tasks];
+
+            if (search.trim() !== '') {
+                const lower = search.toLowerCase();
+                result = result.filter(t => 
+                    t.title.toLowerCase().includes(lower) || 
+                    (t.description && t.description.toLowerCase().includes(lower))
+                );
+            }
 
             if (filter === 'NOTDONE'){
                 result = result.filter(t => !t.isCompleted);
@@ -50,6 +60,10 @@ export class Tasks {
             return result;
         })
     );
+
+    setSearch(query: string){
+        this.searchSubject.next(query);
+    }
 
     setFilter(filter: string) {
         this.filterSubject.next(filter);

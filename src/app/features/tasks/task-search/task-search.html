@@ -1,4 +1,9 @@
 <div class="search-field-body">
     <mat-icon>search</mat-icon>
-    <input type="text" placeholder="Search tasks">
+    <input [formControl]="searchInput" type="text" placeholder="Search tasks">
+    @if(searchInput.value){
+        <button class="clear-button" (click)="searchInput.setValue('')">
+            <mat-icon>close</mat-icon>
+        </button>
+    } 
 </div>
