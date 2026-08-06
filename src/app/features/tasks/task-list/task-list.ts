@@ -4,13 +4,14 @@ import { TaskResponseModel, TaskCreationModel } from '../../../models/task.model
 import { TaskItem } from '../task-item/task-item';
 import { AsyncPipe } from '@angular/common';
 import { Category } from '../../../services/category/category';
-import { combineLatest, map, Observable } from 'rxjs';
+import { combineLatest, map, Observable, BehaviorSubject } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { TaksDialog } from '../../../components/taks-dialog/taks-dialog';
+import { MatIcon } from "@angular/material/icon";
 
 @Component({
   selector: 'app-task-list',
-  imports: [TaskItem, AsyncPipe],
+  imports: [TaskItem, AsyncPipe, MatIcon],
   templateUrl: './task-list.html',
   styleUrl: './task-list.css',
 })
@@ -20,6 +21,11 @@ export class TaskList {
   categoryService = inject(Category);
 
   taskWithCategories$!: Observable<any[]>;
+
+  paginatedTasks$!: Observable<any[]>;
+  currentPage$ = new BehaviorSubject<number>(1);
+  pageSize = 9;
+  totalPages$ = new BehaviorSubject<number>(1);
 
   openMenuId: number | string | null = null;
 
@@ -79,5 +85,36 @@ export class TaskList {
         })
       })
     )
+
+    this.paginatedTasks$ = combineLatest([
+      this.taskWithCategories$,
+      this.currentPage$
+    ]).pipe(
+      map(([allTasks, currentPage]) => {
+        const total = Math.ceil(allTasks.length / this.pageSize) || 1;
+        this.totalPages$.next(total);
+
+        if (currentPage > total) {
+           setTimeout(() => this.currentPage$.next(total));
+           currentPage = total;
+        }
+
+        const startIndex = (currentPage - 1) * this.pageSize;
+        const endIndex = startIndex + this.pageSize;
+        
+        return allTasks.slice(startIndex, endIndex);
+      })
+    );
+  }
+  nextPage() {
+    if (this.currentPage$.getValue() < this.totalPages$.getValue()) {
+      this.currentPage$.next(this.currentPage$.getValue() + 1);
+    }
+  }
+
+  prevPage() {
+    if (this.currentPage$.getValue() > 1) {
+      this.currentPage$.next(this.currentPage$.getValue() - 1);
+    }
   }
 }

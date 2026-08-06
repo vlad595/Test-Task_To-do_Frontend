@@ -1,19 +1,42 @@
-<div class="tasks-list-container">
-    @for (task of taskWithCategories$ | async; track task.id) {
-        <app-task-item 
-            [isDone]="task.isCompleted" 
-            [isMenuOpened]="openMenuId === task.id" 
-            (onDoneClick)="markTaskAsDone(task.id)" 
-            (onDeleteButtonClick)="deleteTask(task.id)" 
-            (onMenuClick)="toggleMenu(task.id, $event)" 
-            (onEditClick)="editTask(task)"
-            [categoryColor]="task.categoryColor" 
-            [priority]="task.priorityLevel" 
-            [title]="task.title" 
-            [deadline]="task.deadline" 
-            [categoryName]="task.categoryName"
-            animate.enter="task-enter"
-            animate.leave="task-leave">
-        </app-task-item>
+<div class="main-body">
+    <div class="tasks-list-container">
+        @for (task of paginatedTasks$ | async; track task.id) {
+            <app-task-item 
+                [isDone]="task.isCompleted" 
+                [isMenuOpened]="openMenuId === task.id" 
+                (onDoneClick)="markTaskAsDone(task.id)" 
+                (onDeleteButtonClick)="deleteTask(task.id)" 
+                (onMenuClick)="toggleMenu(task.id, $event)" 
+                (onEditClick)="editTask(task)"
+                [categoryColor]="task.categoryColor" 
+                [priority]="task.priorityLevel" 
+                [title]="task.title" 
+                [deadline]="task.deadline" 
+                [categoryName]="task.categoryName"
+                animate.enter="task-enter"
+                animate.leave="task-leave">
+            </app-task-item>
+        }
+    </div>
+    @if (totalPages$ | async; as total) {
+    @if (total > 1) {
+        <div class="pagination-controls">
+            <button 
+                (click)="prevPage()" 
+                [disabled]="(currentPage$ | async) === 1">
+                <mat-icon>chevron_left</mat-icon>
+            </button>
+
+            <span class="page-info">
+                Page {{ currentPage$ | async }} of {{ total }}
+            </span>
+
+            <button 
+                (click)="nextPage()" 
+                [disabled]="(currentPage$ | async) === total">
+                <mat-icon>chevron_right</mat-icon>
+            </button>
+        </div>
+    }
     }
 </div>
