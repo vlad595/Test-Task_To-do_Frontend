@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Service } from '@angular/core';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, combineLatest, Observable, tap, map } from 'rxjs';
 import { TaskCreationModel, TaskResponseModel } from '../../models/task.model';
 import { response } from 'express';
 import { error } from 'console';
+
+export type SortDirection = 'NONE' | 'ASC' | 'DESC';
 
 @Service()
 export class Tasks {
@@ -11,8 +13,46 @@ export class Tasks {
     private http = inject(HttpClient);
 
     private tasksSubject = new BehaviorSubject<TaskResponseModel[]>([]);
+    private filterSubject = new BehaviorSubject<string>('NOTDONE');
+    private categoryFilterSubject = new BehaviorSubject<number>(-1);
 
     tasks$ = this.tasksSubject.asObservable();
+
+    filteredAndSortedTasks$: Observable<TaskResponseModel[]> = combineLatest([
+        this.tasksSubject,
+        this.filterSubject,
+        this.categoryFilterSubject
+    ]).pipe(
+        map(([tasks, filter, categoryFilter]) => {
+            let result = [...tasks];
+
+            if (filter === 'NOTDONE'){
+                result = result.filter(t => !t.isCompleted);
+            }
+            else if (filter === 'IMPORTANT'){
+                result = result.filter(t => t.priorityLevel === 2);
+            }
+            else if (filter === 'ALL'){
+                result = result;
+            }
+            else if (filter === 'PLANNED'){
+                result = result;
+            }
+            if (categoryFilter !== -1){
+                result = result.filter(t => t.categoryId === categoryFilter);
+            }
+
+            return result;
+        })
+    );
+
+    setFilter(filter: string) {
+        this.filterSubject.next(filter);
+    }
+
+    setCategoryId(id: number){
+        this.categoryFilterSubject.next(id);
+    }
 
     newTask(data: TaskCreationModel): Observable<TaskResponseModel>{
         return this.http.post<TaskResponseModel>(`${this.apiUrl}api/Tasks/`, data).pipe(

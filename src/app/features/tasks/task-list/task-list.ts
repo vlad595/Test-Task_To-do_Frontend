@@ -46,7 +46,7 @@ export class TaskList {
   }
 
   combineTasks(){
-    const tasks$ = this.taskService.tasks$;
+    const tasks$ = this.taskService.filteredAndSortedTasks$;
     const categories$ = this.categoryService.categories$;
 
     this.taskWithCategories$ = combineLatest({tasks: tasks$, categories: categories$}).pipe(

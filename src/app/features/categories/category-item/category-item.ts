@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-category-item',
@@ -9,4 +9,5 @@ import { Component, Input } from '@angular/core';
 export class CategoryItem {
   @Input({required: true}) categoryName!: string;
   @Input({required: true}) categoryColor!: string;
+  @Output() clicked = new EventEmitter();
 }

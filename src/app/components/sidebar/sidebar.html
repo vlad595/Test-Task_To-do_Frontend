@@ -9,10 +9,10 @@
         </div>
     </div>
     <div class="nav-buttons">
-        <button class="filter-button" [class.active]="activeTab() === 'home'" (click)="setActive('home')"><mat-icon>home</mat-icon>Home</button>
-        <button class="filter-button" [class.active]="activeTab() === 'important'" (click)="setActive('important')"><mat-icon>star</mat-icon>Important</button>
-        <button class="filter-button" [class.active]="activeTab() === 'planned'" (click)="setActive('planned')"><mat-icon>calendar_today</mat-icon>Planned</button>
-        <button class="filter-button" [class.active]="activeTab() === 'tasks'" (click)="setActive('tasks')"><mat-icon>inbox</mat-icon>Tasks</button>
+        <button class="filter-button" [class.active]="activeTab() === 'NOTDONE'" (click)="setActive('NOTDONE')"><mat-icon>home</mat-icon>Home</button>
+        <button class="filter-button" [class.active]="activeTab() === 'IMPORTANT'" (click)="setActive('IMPORTANT')"><mat-icon>star</mat-icon>Important</button>
+        <button class="filter-button" [class.active]="activeTab() === 'PLANNED'" (click)="setActive('PLANNED')"><mat-icon>calendar_today</mat-icon>Planned</button>
+        <button class="filter-button" [class.active]="activeTab() === 'ALL'" (click)="setActive('ALL')"><mat-icon>inbox</mat-icon>Tasks</button>
     </div>
     <hr class="divider">
     <p class="categories-header">MY CATEGORIES</p>

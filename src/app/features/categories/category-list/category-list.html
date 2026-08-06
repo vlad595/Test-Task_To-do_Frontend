@@ -1,6 +1,6 @@
 <div class="categoris_list-container">
     @for (category of categories(); track category.id) {
-        <app-category-item [categoryName]="category.name" [categoryColor]="category.color"></app-category-item>
+        <app-category-item (clicked)="onCategSelect(category.id)" [categoryName]="category.name" [categoryColor]="category.color"></app-category-item>
     } @empty {
         <p>You have no categories</p>
     }
