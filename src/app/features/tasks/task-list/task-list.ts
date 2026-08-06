@@ -1,10 +1,12 @@
 import { Component, HostListener, inject } from '@angular/core';
 import { Tasks } from '../../../services/tasks/tasks';
-import { TaskResponseModel } from '../../../models/task.model';
+import { TaskResponseModel, TaskCreationModel } from '../../../models/task.model';
 import { TaskItem } from '../task-item/task-item';
 import { AsyncPipe } from '@angular/common';
 import { Category } from '../../../services/category/category';
 import { combineLatest, map, Observable } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { TaksDialog } from '../../../components/taks-dialog/taks-dialog';
 
 @Component({
   selector: 'app-task-list',
@@ -13,6 +15,7 @@ import { combineLatest, map, Observable } from 'rxjs';
   styleUrl: './task-list.css',
 })
 export class TaskList {
+  private dialog = inject(MatDialog);
   taskService = inject(Tasks);
   categoryService = inject(Category);
 
@@ -33,6 +36,25 @@ export class TaskList {
   deleteTask(id: string){
     this.taskService.deleteTask(id);
     console.log(`Task with id ${id} is deleted`)
+  }
+
+  editTask(task: TaskResponseModel){
+    console.log("You want to edit this task: ", task);
+    
+    const editTaskData: TaskCreationModel = {
+      title: task.title,
+      description: task.description,
+      deadline: task.deadline,
+      priorityLevel: task.priorityLevel,
+      categoryId: task.categoryId
+    }
+
+    this.dialog.open(TaksDialog, {
+      width: '480px',
+      maxWidth: 'calc(100vw - 32px)',
+      panelClass: 'task-dialog-panel',
+      data: {taskData: editTaskData, taskId: task.id}
+    });
   }
 
   markTaskAsDone(id: string){

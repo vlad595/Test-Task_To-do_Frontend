@@ -19,6 +19,7 @@ export class TaskItem {
   @Output() onMenuClick = new EventEmitter<Event>();
   @Output() onDeleteButtonClick = new EventEmitter();
   @Output() onDoneClick = new EventEmitter();
+  @Output() onEditClick = new EventEmitter();
 
   triggerMenu(event: Event){
     this.onMenuClick.emit(event);
@@ -30,6 +31,10 @@ export class TaskItem {
 
   doneButtonClick(){
     this.isDone = !this.isDone;
-    this.onDoneClick.emit()
+    this.onDoneClick.emit();
+  }
+
+  editButtonClick(){
+    this.onEditClick.emit();
   }
 }

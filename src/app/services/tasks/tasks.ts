@@ -2,8 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Service } from '@angular/core';
 import { BehaviorSubject, combineLatest, Observable, tap, map } from 'rxjs';
 import { TaskCreationModel, TaskResponseModel } from '../../models/task.model';
-import { response } from 'express';
-import { error } from 'console';
+import { DateFormatPipePipe } from '../../pipes/s/date-format-pipe-pipe';
 
 export type SortDirection = 'NONE' | 'ASC' | 'DESC';
 
@@ -11,6 +10,7 @@ export type SortDirection = 'NONE' | 'ASC' | 'DESC';
 export class Tasks {
     private apiUrl = "https://test-taskto-dobackend-production.up.railway.app/"
     private http = inject(HttpClient);
+    private dateFormtPipe = new DateFormatPipePipe();
 
     private tasksSubject = new BehaviorSubject<TaskResponseModel[]>([]);
     private filterSubject = new BehaviorSubject<string>('NOTDONE');
@@ -30,13 +30,18 @@ export class Tasks {
                 result = result.filter(t => !t.isCompleted);
             }
             else if (filter === 'IMPORTANT'){
-                result = result.filter(t => t.priorityLevel === 2);
+                result = result.filter(t => t.priorityLevel === 2 && !t.isCompleted);
             }
             else if (filter === 'ALL'){
                 result = result;
             }
             else if (filter === 'PLANNED'){
-                result = result;
+                const plannedStatuses = ['Tomorrow', 'The day after tomorrow', 'Next week', 'Next month'];
+                
+                result = result.filter(t => {
+                    const dateStatus = this.dateFormtPipe.transform(t.deadline);
+                    return plannedStatuses.includes(dateStatus) && !t.isCompleted;
+                });
             }
             if (categoryFilter !== -1){
                 result = result.filter(t => t.categoryId === categoryFilter);

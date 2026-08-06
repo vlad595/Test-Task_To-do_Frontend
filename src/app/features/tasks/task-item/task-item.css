@@ -16,13 +16,11 @@
   gap: 12px;
   font-family: 'DM Sans', sans-serif;
   box-sizing: border-box;
-  /* Виправлено: додано "s" до 0.3s для background-color */
   transition: opacity 0.3s ease, background-color 0.3s ease; 
+  z-index: 1;
 }
 
-/* Затемнення всього контейнера при виконанні */
 .task-item.completed {
-  /* Виправлено: opacity приймає значення від 0 до 1, без "s" */
   opacity: 0.5; 
 }
 
@@ -229,7 +227,7 @@ mat-icon {
   right: 0;  
   margin-top: 4px;
   min-width: 140px;
-  z-index: 100; 
+  z-index: 101; 
   padding: 20px 0px;
   background: rgba(255, 255, 255, 0.05);
   box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.07), 0px 4px 24px rgba(0, 0, 0, 0.35);
@@ -256,4 +254,8 @@ mat-icon {
   align-items: center;
   width: 20px;
   height: 20px;
+}
+
+.task-item.menu-opened{
+  z-index: 100;
 }

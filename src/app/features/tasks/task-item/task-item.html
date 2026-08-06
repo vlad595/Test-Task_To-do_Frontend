@@ -1,4 +1,4 @@
-<article class="task-item" [class.completed]="isDone">
+<article class="task-item" [class.completed]="isDone" [class.menu-opened]="isMenuOpened">
     <button [class.low]="priority == 0" [class.medium]="priority == 1" [class.high]="priority == 2" type="button" class="task-checkbox" aria-label="Mark as done" (click)="doneButtonClick()"></button>
   
     <div class="task-content">
@@ -41,7 +41,7 @@
                     <mat-icon>delete</mat-icon>
                     <p>Delete</p>
                 </button>
-                <button class="menu-button">
+                <button class="menu-button" (click)="editButtonClick()">
                     <mat-icon>edit</mat-icon>
                     <p>Edit</p>
                 </button>

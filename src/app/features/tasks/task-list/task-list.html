@@ -6,6 +6,7 @@
             (onDoneClick)="markTaskAsDone(task.id)" 
             (onDeleteButtonClick)="deleteTask(task.id)" 
             (onMenuClick)="toggleMenu(task.id, $event)" 
+            (onEditClick)="editTask(task)"
             [categoryColor]="task.categoryColor" 
             [priority]="task.priorityLevel" 
             [title]="task.title" 
