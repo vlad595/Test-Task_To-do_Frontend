@@ -1,4 +1,4 @@
 <div class="category_input-body">
-    <div class="color-circle"></div>
-    <input class="category_name-field" placeholder="Enter category name...">
+    <div [style.background-color]="color" class="color-circle"></div>
+    <input #categoryInput class="category_name-field" placeholder="Enter category name..." (keyup.enter)="onInputEnter(categoryInput)">
 </div>

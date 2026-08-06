@@ -1,4 +1,5 @@
 .tasks-list-container{
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -14,4 +15,34 @@
 
 .tasks-list-container::-webkit-scrollbar{
     display: none;
+}
+
+@keyframes slideIn {
+ from{
+    opacity: 0;
+    transform: translateX(-100);
+ }
+ to {
+    opacity: 1;
+    transform: translateX(0);
+ }
+}
+
+@keyframes slideOut {
+  from{
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to{
+    opacity: 0;
+    transform: translateX(-100);
+  }
+}
+
+.task-enter {
+  animation: slideIn 300ms ease-out forwards;
+}
+
+.task-leave {
+  animation: slideOut 300ms ease-in forwards;
 }

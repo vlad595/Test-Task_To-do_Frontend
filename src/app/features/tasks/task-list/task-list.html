@@ -10,7 +10,9 @@
             [priority]="task.priorityLevel" 
             [title]="task.title" 
             [deadline]="task.deadline" 
-            [categoryName]="task.categoryName">
+            [categoryName]="task.categoryName"
+            animate.enter="task-enter"
+            animate.leave="task-leave">
         </app-task-item>
     }
 </div>

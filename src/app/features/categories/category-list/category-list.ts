@@ -5,20 +5,22 @@ import { CategoryModel } from '../../../models/category.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Tasks } from '../../../services/tasks/tasks';
 import { filter } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-category-list',
-  imports: [ CategoryItem ],
+  imports: [ CategoryItem, AsyncPipe ],
   templateUrl: './category-list.html',
   styleUrl: './category-list.css',
 })
 export class CategoryList {
-  categories = signal<CategoryModel[]>([]);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
   private tasksService = inject(Tasks);
 
   private categoryService = inject(Category)
+
+  categories$ = this.categoryService.categories$
 
   ngOnInit(){
     this.loadCategories();
@@ -46,7 +48,7 @@ export class CategoryList {
   loadCategories(){
     this.categoryService.get_categories_names().subscribe({
       next: (data) => {
-        this.categories.set(data);
+        
       },
       error: (error) => {
         console.error('Categories load exception', error);

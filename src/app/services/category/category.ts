@@ -21,4 +21,17 @@ export class Category {
             })
         )
     }
+
+    addNewCategory(categoryName: string, categoryColor: string){
+        return this.http.post<CategoryModel>(`${this.apiUrl}api/Category/`, { color: categoryColor, name: categoryName }).subscribe({
+            next: (data: CategoryModel) => {
+                const currentCategories = this.categoriesSubject.getValue();
+                const newCategories = [...currentCategories, data];
+                this.categoriesSubject.next(newCategories);
+            },
+            error: (error) => {
+                console.log("Adding category exception: ", error);
+            }
+        });
+    }
 }
